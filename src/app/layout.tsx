@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Outfit } from "next/font/google";
 import "./globals.css";
 import { ClerkProvider } from "@/services/clerk/components/ClerkProvider";
+import { ThemeProvider } from "next-themes";
 
 const outfitSans = Outfit({
   variable: "--font-outfit-sans",
@@ -10,7 +11,8 @@ const outfitSans = Outfit({
 
 export const metadata: Metadata = {
   title: "PrepFirst",
-  description: "About AI-powered SaaS platform for job interview preparation featuring live AI mock interviews & resume analysis.",
+  description:
+    "About AI-powered SaaS platform for job interview preparation featuring live AI mock interviews & resume analysis.",
 };
 
 export default function RootLayout({
@@ -20,11 +22,16 @@ export default function RootLayout({
 }>) {
   return (
     <ClerkProvider>
-      <html lang="en">
-        <body
-          className={`${outfitSans.variable} antialiased font-sans`}
-        >
-          {children}
+      <html lang="en" suppressHydrationWarning>
+        <body className={`${outfitSans.variable} antialiased font-sans`}>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableColorScheme
+            disableTransitionOnChange
+          >
+            {children}
+          </ThemeProvider>
         </body>
       </html>
     </ClerkProvider>
