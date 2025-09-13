@@ -39,3 +39,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Drizzle
+# cache files
+drizzle/migrations/.cache/        
+# metadata about schema
+drizzle/meta/                     
